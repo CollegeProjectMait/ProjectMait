@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterUserActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/MaharajaLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/maharajalogo" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/Username"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="250dp"
+
+            android:hint="Username"
+            android:paddingLeft="10dp"
+            android:layout_height="40dp"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/Password"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/Username"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="250dp"
+
+            android:hint="Password"
+            android:paddingLeft="10dp"
+            android:layout_height="40dp"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/ConfirmPassword"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/Password"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="250dp"
+            android:hint="Confirm Password"
+            android:paddingLeft="10dp"
+            android:layout_height="40dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/Name"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ConfirmPassword"
+        android:layout_height="wrap_content">
+        <EditText
+            android:hint="Name"
+            android:paddingLeft="10dp"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+
+            />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/register"
+        android:layout_width="100dp"
+        android:background="@drawable/button_design"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Register"/>
+
+
+
+
+</RelativeLayout>

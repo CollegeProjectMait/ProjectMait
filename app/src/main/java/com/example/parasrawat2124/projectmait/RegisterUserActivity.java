@@ -1,7 +1,9 @@
 package com.example.parasrawat2124.projectmait;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,9 +41,12 @@ public class RegisterUserActivity extends AppCompatActivity {
                  String pass=password.getEditText().getText().toString();
                  String conpass=confirmpassword.getEditText().getText().toString();
                  String user=username.getEditText().getText().toString();
-                 if(pass.equals(conpass) && pass.length()>4){
+                 if(pass.equals(conpass) && pass.length()>6){
                      Log.d("USERNAME PASSWORD", "onClick: "+pass+conpass);
                      CreateFirebaseUser(user,pass);
+                 }
+                 else {
+                     ShowErrorDialog();
                  }
 
              }
@@ -80,6 +85,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                } else {
 
                     Toast.makeText(RegisterUserActivity.this,"REGISTRATION SUCCESS",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterUserActivity.this,LoginActivity.class));
 //
                }
 //
@@ -87,5 +93,13 @@ public class RegisterUserActivity extends AppCompatActivity {
              }
 
         });
+    }
+
+    private void ShowErrorDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("OOPS")
+                .setMessage("Passwords do not match and Lenght should be greater than 6")
+                .setPositiveButton("Retry",null)
+                .setIcon(android.R.drawable.ic_dialog_alert).show();
     }
 }

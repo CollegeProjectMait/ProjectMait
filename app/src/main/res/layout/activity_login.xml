@@ -43,6 +43,7 @@
             android:layout_height="40dp"/>
     </android.support.design.widget.TextInputLayout>
     <Button
+        android:id="@+id/login"
         android:layout_width="100dp"
         android:background="@drawable/button_design"
         android:textColor="@android:color/white"

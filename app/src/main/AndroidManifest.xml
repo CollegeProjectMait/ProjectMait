@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ParasRawatActivity" />
-        <activity android:name=".GetResultActivity"></activity>
+        <activity android:name=".GetResultActivity" />
+        <activity android:name=".resultActivity"></activity>
     </application>
 
 </manifest>

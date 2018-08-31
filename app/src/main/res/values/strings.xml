@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ProjectMait</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
+    <string-array name="time_slots">
+        <item>9:15-10:05</item>
+        <item>10:05-10:55</item>
+        <item>10:55-11:45</item>
+        <item>11:45-12:35</item>
+        <item>1:15-2:05</item>
+        <item>1:15-2:05</item>
+        <item>2:05-2:55</item>
+        <item>2:55-3:45</item>
+        <item>3:45-4:35</item>
+    </string-array>
 </resources>

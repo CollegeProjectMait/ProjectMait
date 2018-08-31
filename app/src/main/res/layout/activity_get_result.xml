@@ -10,24 +10,28 @@
         android:id="@+id/getclass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="getclass"/>
+        android:text="getclass"
+        android:onClick="next"/>
     <Button
         android:id="@+id/getroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="getroom"
-        android:layout_below="@id/getclass"/>
+        android:layout_below="@id/getclass"
+        android:onClick="next"/>
     <Button
         android:id="@+id/getteacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="getteacher"
-        android:layout_below="@id/getroom"/>
+        android:layout_below="@id/getroom"
+        android:onClick="next"/>
     <Button
         android:id="@+id/gettimetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="gettimetable"
-        android:layout_below="@id/getteacher"/>
+        android:layout_below="@id/getteacher"
+        android:onClick="next"/>
 
 </RelativeLayout>

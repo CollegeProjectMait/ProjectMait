@@ -9,18 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/ProjectMaitTheme">
+
+        </activity>
+        <activity android:name=".ParasRawatActivity"
+            android:theme="@style/ProjectMaitTheme" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/ProjectMaitTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParasRawatActivity"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterUserActivity"/>
-        <activity android:name=".GetResultActivity" />
-        <activity android:name=".resultActivity"/>
+        <activity android:name=".RegisterUserActivity" android:theme="@style/ProjectMaitTheme">
+        </activity>
     </application>
 
 </manifest>

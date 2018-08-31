@@ -7,6 +7,7 @@
         <item>Wednesday</item>
         <item>Thursday</item>
         <item>Friday</item>
+        <item>ALL DAYS</item>
     </string-array>
 
     <string-array name="time_slots">
@@ -19,5 +20,19 @@
         <item>2:05-2:55</item>
         <item>2:55-3:45</item>
         <item>3:45-4:35</item>
+        <item>ALL SLOTS</item>
+    </string-array>
+
+    <string-array name="subjects">
+        <item>-- Select the Subject --</item>
+        <item>123</item>
+    </string-array>
+    <string-array name="teachers">
+        <item>-- Select the Teacher --</item>
+        <item>namita</item>
+    </string-array>
+    <string-array name="rooms">
+        <item>-- Select the RoomNo. --</item>
+        <item>136</item>
     </string-array>
 </resources>

@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
@@ -18,24 +21,27 @@ import java.util.Calendar;
 public class resultActivity extends AppCompatActivity {
 
     LinearLayout llreq,llres;
-    FirebaseDatabase fbd;
+    DatabaseReference dbref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        fbd=FirebaseDatabase.getInstance();
+        dbref=FirebaseDatabase.getInstance().getReference();
 
         Bundle bundle=getIntent().getExtras();
         String searchvalue=bundle.getString("searchvalue");
+
         String arr1[]={"getclass","getroom","getteacher"};
-        String arr2[]={"class","room","teacher"};
+        final String arr2[]={"clas","rooms","teachers"};
+
         llreq=(LinearLayout) findViewById(R.id.llreq);
         llres=(LinearLayout) findViewById(R.id.llres);
         TextView title=(TextView) findViewById(R.id.title);
         Button butt=(Button) findViewById(R.id.butt);
-        butt.setText(searchvalue);
 
+        butt.setText(searchvalue);
         title.setText(searchvalue);
 
         for(int i=0;i<3;i++){
@@ -50,10 +56,33 @@ public class resultActivity extends AppCompatActivity {
                 TextView t=new TextView(this);
                 t.setText(arr2[i]);
                 llreq.addView(t);
-                Spinner spin=new Spinner(this);
+                arr2[i]=null;
+                final Spinner spin=new Spinner(this);
+                final ArrayAdapter<String> spin_adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+                spin_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spin.setAdapter(spin_adapter);
+                spin_adapter.add("");
+                spin_adapter.notifyDataSetChanged();
+                spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        arr2[i]=spin.getSelectedItem().toString();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
                 llreq.addView(spin);
             }
         }
+
+        butt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public void setDateTimeField(View view){

@@ -23,7 +23,7 @@
         <item>ALL SLOTS</item>
     </string-array>
 
-    <string-array name="subjects">
+    <string-array name="clas">
         <item>-- Select the Subject --</item>
         <item>123</item>
     </string-array>

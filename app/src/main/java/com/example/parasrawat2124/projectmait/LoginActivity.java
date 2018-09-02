@@ -69,14 +69,10 @@ public class LoginActivity extends AppCompatActivity {
                     else {
                         finish();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
                     }
                 }
             });
         }
 
     }
-
-
-
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/textdesign"
     tools:context=".RegisterUserActivity">
 
     <ImageView
@@ -18,6 +19,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
+        android:background="@drawable/textdesign2"
         android:id="@+id/Username"
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
@@ -32,6 +34,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:id="@+id/Password"
+        android:background="@drawable/textdesign2"
         android:layout_below="@+id/Username"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">

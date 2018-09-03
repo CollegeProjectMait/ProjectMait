@@ -66,25 +66,54 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/top"
-        android:layout_margin="16dp"></LinearLayout>
+        android:layout_margin="16dp">
+        <EditText
+            android:id="@+id/tclass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="class"/>
+        <EditText
+            android:id="@+id/troom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="room"/>
+        <EditText
+            android:id="@+id/tteacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="teacher"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/llreq"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
-        android:textColor="@android:color/white"/>
-
-    <LinearLayout
-        android:id="@+id/llres"
-        android:layout_width="match_parent"
+        android:textColor="@android:color/white"
+        android:text="GET RESULT"
+        android:layout_below="@id/llreq"/>
+    <Button
+        android:id="@+id/rese"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:background="@drawable/button_design"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:onClick="reset"
+        android:text="RESET"
+        android:layout_toEndOf="@id/butt"
+        android:layout_below="@id/llreq"/>
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESULT HERE !"
         android:layout_below="@id/butt"
-        android:layout_margin="16dp"></LinearLayout>
+        android:layout_margin="16dp"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

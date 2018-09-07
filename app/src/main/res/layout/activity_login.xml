@@ -63,7 +63,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
-        android:text="NOT REGISTERD?" />
+        android:text="NOT REGISTERED?" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
         android:textStyle="italic|bold"
         android:text="REGISTER HERE"
         android:id="@+id/registerhere"
-        android:textColor="#DC143C"/>
+        android:textColor="@color/theme_red"/>
 
 
 </RelativeLayout>

@@ -6,4 +6,6 @@
     <color name="primary_material_light">#23469e</color>
     <color name="accent_material_light">#dc143c</color>
     <color name="primary_dark_material_light">#221191</color>
+
+    <color name="theme_red">#C91F42</color>
 </resources>

@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/title"
+        android:text="Drop Down Select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
@@ -19,44 +20,47 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/title">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="65dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <Spinner
-                android:id="@+id/days"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/days"
-                android:layout_margin="8dp"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/timeslots"
+                android:id="@+id/daysspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/time_slots"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:entries="@array/days" />
+
+            <Spinner
+                android:id="@+id/timeslotsspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:entries="@array/time_slots" />
         </LinearLayout>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="#90A4AE"/>
+            android:background="#90A4AE" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Choose Date"
-            android:background="@color/theme_red"
-            android:textColor="@android:color/white"
-            android:padding="16dp"
-            android:onClick="setDateTimeField"
             android:layout_margin="16dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/theme_red"
+            android:onClick="setDateTimeField"
+            android:padding="16dp"
+            android:text="Choose Date"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -67,53 +71,74 @@
         android:orientation="vertical"
         android:layout_below="@id/top"
         android:layout_margin="16dp">
-        <EditText
+        <TextView
             android:id="@+id/tclass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="class"/>
-        <EditText
+            android:layout_height="25dp"
+            android:text="Class"/>
+
+        <Spinner
+            android:id="@+id/classsspinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/clas"></Spinner>
+        <TextView
             android:id="@+id/troom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="room"/>
-        <EditText
+            android:layout_height="25dp"
+           android:text="Room"/>
+
+        <Spinner
+            android:id="@+id/roomspinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/rooms"></Spinner>
+        <TextView
             android:id="@+id/tteacher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="teacher"/>
+            android:layout_height="25dp"
+            android:text="Teacher"/>
+
+        <Spinner
+            android:id="@+id/teacherspinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/teachers"></Spinner>
     </LinearLayout>
 
     <Button
-        android:id="@+id/butt"
+        android:id="@+id/push"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="72dp"
+        android:layout_marginStart="82dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
-        android:textColor="@android:color/white"
-        android:text="GET RESULT"
-        android:layout_below="@id/llreq"/>
+        android:text="Push"
+        android:textColor="@android:color/white" />
+
     <Button
         android:id="@+id/rese"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/push"
+        android:layout_marginEnd="101dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
-        android:textColor="@android:color/white"
-        android:onClick="reset"
         android:text="RESET"
-        android:layout_toEndOf="@id/butt"
-        android:layout_below="@id/llreq"/>
+        android:textColor="@android:color/white" />
+
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="229dp"
         android:text="RESULT HERE !"
-        android:layout_below="@id/butt"
-        android:layout_margin="16dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
 </RelativeLayout>

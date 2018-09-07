@@ -24,15 +24,25 @@
     </string-array>
 
     <string-array name="clas">
-        <item>-- Select the Subject --</item>
-        <item>123</item>
+        <item>C-123</item>
+        <item>C-456</item>
+        <item>C-789</item>
+        <item>C-111213</item>
     </string-array>
     <string-array name="teachers">
-        <item>-- Select the Teacher --</item>
+        <item>namita</item>
+        <item>namita</item>
+        <item>namita</item>
+        <item>namita</item>
         <item>namita</item>
     </string-array>
     <string-array name="rooms">
-        <item>-- Select the RoomNo. --</item>
-        <item>136</item>
+        <item>112</item>
+        <item>113</item>
+        <item>114</item>
+        <item>121</item>
+        <item>122</item>
+        <item>123</item>
+        <item>1124</item>
     </string-array>
 </resources>

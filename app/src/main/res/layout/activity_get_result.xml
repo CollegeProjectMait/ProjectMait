@@ -10,15 +10,20 @@
         android:id="@+id/getclass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="getclass"
-        android:onClick="next"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/gettimetable"
+        android:onClick="next"
+        android:text="getclass" />
+
     <Button
         android:id="@+id/getroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="getroom"
-        android:layout_below="@id/getclass"
-        android:onClick="next"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="138dp"
+        android:onClick="next"
+        android:text="getroom" />
     <Button
         android:id="@+id/getteacher"
         android:layout_width="match_parent"

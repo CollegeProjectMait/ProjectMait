@@ -15,7 +15,7 @@ public class GetResultActivity extends AppCompatActivity {
 
     }
     public void next(View view){
-        Intent i=new Intent(GetResultActivity.this,resultActivity.class);
+        Intent i=new Intent(GetResultActivity.this,pushDataActivity.class);
         int id=view.getId();
         Button b=(Button) findViewById(id);
         i.putExtra("searchvalue",b.getText());

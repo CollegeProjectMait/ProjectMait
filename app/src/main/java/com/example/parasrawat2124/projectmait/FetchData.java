@@ -38,15 +38,8 @@ public class FetchData extends AppCompatActivity {
     List<Map<String,String>> compositemap=new ArrayList<Map<String,String>>();
     ArrayList<List<Map<String,String>>> composeofcompose=new ArrayList<>();
     Button button;
-
-
     Spinner roomspinner,classspinner,dayspinner,timespinner;
-
     String classvalue,day,time,slotchild;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,49 +55,132 @@ public class FetchData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 textView.setText("");
-                classvalue=classspinner.getSelectedItem().toString();
-                day=dayspinner.getSelectedItem().toString();
-                time=timespinner.getSelectedItem().toString();
-                slotchild=day+"("+time+")";
-                Log.d(TAG, "SLOT OF TIME CHOSEN: "+slotchild);
+                if(!classspinner.getSelectedItem().toString().equals("No Idea")) {
 
-                final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MasterTable");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.d(TAG, "Class Value: "+classvalue);
-                        dataSnapshot.child(classvalue).getRef().addChildEventListener(new ChildEventListener() {
+                    classvalue = classspinner.getSelectedItem().toString();
+                    day = dayspinner.getSelectedItem().toString();
+                    time = timespinner.getSelectedItem().toString();
+
+                    if (!day.equals("No Idea") && !time.equals("No Idea")) {
+ //+++++++++++++++++++++++++++++++++++++Query if we know Day Time Class All of the Above++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                        slotchild = day + "(" + time + ")";
+                        Log.d(TAG, "SLOT OF TIME CHOSEN: " + slotchild);
+                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("MasterTable");
+                        databaseReference.addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                                if(dataSnapshot.getKey().equals(slotchild)){
-                                    Log.d(TAG, "onChildAdded: "+dataSnapshot.getValue());
-                                    for (DataSnapshot data:dataSnapshot.getChildren()
-                                         ) {
-                                        if(data.getKey().equals("teacherid")){
-                                            Log.d(TAG, "onChildAdded: "+data.getValue());
-                                            textView.append("Your Teacher is  "+ data.getValue()+"\n");
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Log.d(TAG, "Class Value: " + classvalue);
+                                dataSnapshot.child(classvalue).getRef().addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                        if (dataSnapshot.getKey().equals(slotchild)) {
+                                            Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
+                                            for (DataSnapshot data : dataSnapshot.getChildren()
+                                                    ) {
+                                                if (data.getKey().equals("teacherid")) {
+                                                    Log.d(TAG, "onChildAdded: " + data.getValue());
+                                                    textView.append("Your Teacher is  " + data.getValue() + "\n");
+                                                }
+                                                if (data.getKey().equals("room")) {
+                                                    Log.d(TAG, "onChildAdded: " + data.getValue());
+                                                    textView.append("Your Room is " + data.getValue() + "\n");
+                                                }
+                                            }
                                         }
-                                        if(data.getKey().equals("room")){
-                                            Log.d(TAG, "onChildAdded: "+data.getValue());
-                                            textView.append("Your Room is " +data.getValue()+"\n");
-                                        }
-                                        }
-                                }
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
 
-
                             @Override
-                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
                             }
+                        });
+                    }
 
+ //+++++++++++++++++++++++++++++++++++++++++++++++++++Query if we know Day only+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                    if(time.equals("No Idea") && !day.equals("No Idea")){
+                        Log.d(TAG, "IN THE QUERY 2: ");
+
+
+                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MasterTable");
+                        databaseReference.addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dataSnapshot.child(classvalue).getRef().addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                            }
+                                        if(dataSnapshot.getKey().contains(day)){
+                                            Log.d(TAG, "onChildAdded: "+dataSnapshot);
 
-                            @Override
-                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                            for (DataSnapshot data: dataSnapshot.getChildren()
+                                                 ) {
+                                                String teacher="";
+                                                String room="";
+                                                String timeslot="";
+                                                Log.d(TAG, "Query 2: "+data.getKey()+" "+data.getValue());
+
+                                                if(data.getKey().equals("teacherid")){
+                                                    teacher=teacher+"Teacher "+data.getValue().toString();
+                                                }
+                                                if(data.getKey().equals("room")){
+                                                    room=room+" In room "+data.getValue().toString();
+                                                }
+
+                                                if(data.getKey().equals("timeslot")){
+                                                    timeslot=" For the slot "+timeslot+data.getValue().toString();
+                                                }
+                                                textView.append(teacher+room+timeslot+"\n");
+
+                                            }
+
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
 
                             }
 
@@ -113,11 +189,14 @@ public class FetchData extends AppCompatActivity {
 
                             }
                         });
+
                     }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++QUERY If we know timeslot
+
+
+
+                }
             }
         });
     }

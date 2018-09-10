@@ -24,19 +24,22 @@
     </string-array>
 
     <string-array name="clas">
+        <item>No Idea</item>
         <item>C-123</item>
         <item>C-456</item>
         <item>C-789</item>
         <item>C-111213</item>
     </string-array>
     <string-array name="teachers">
+        <item>No Idea</item>
         <item>namita</item>
-        <item>namita</item>
-        <item>namita</item>
-        <item>namita</item>
-        <item>namita</item>
+        <item>Shamita</item>
+        <item>Papita</item>
+        <item>Sapita</item>
+        <item>Kapita</item>
     </string-array>
     <string-array name="rooms">
+        <item>No Idea</item>
         <item>112</item>
         <item>113</item>
         <item>114</item>

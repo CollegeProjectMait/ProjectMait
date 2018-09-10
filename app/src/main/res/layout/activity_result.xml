@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -120,7 +122,7 @@
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/rese"
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -128,17 +130,17 @@
         android:layout_marginEnd="101dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
-        android:text="RESET"
+        android:text="Fetch"
         android:textColor="@android:color/white" />
 
     <TextView
+        android:layout_below="@id/llreq"
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="229dp"
-        android:text="RESULT HERE !"
         android:textSize="20sp" />
 
 </RelativeLayout>

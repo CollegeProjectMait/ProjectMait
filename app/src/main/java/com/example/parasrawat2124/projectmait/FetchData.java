@@ -65,6 +65,7 @@ public class FetchData extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                textView.setText("");
                 classvalue=classspinner.getSelectedItem().toString();
                 final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MasterTable");
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -88,6 +89,7 @@ public class FetchData extends AppCompatActivity {
                                 }
 
                                 Log.d(TAG, "Status of Map "+map);
+                                textView.append(map.toString()+"\n");
                             }
 
 

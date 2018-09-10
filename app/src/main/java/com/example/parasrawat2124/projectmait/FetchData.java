@@ -31,8 +31,6 @@ public class FetchData extends AppCompatActivity {
     List<ParasRawatPushData> paras = new ArrayList<>();
     public static final String TAG="FETCH DATA ACTIVITY";
     TextView textView;
-//    Object object = datasnapshot.getValue(Object.class);
-//    String json = new Gson().toJson(object);
     Object object;
     String json;
     ArrayList<String> jsonlist=new ArrayList<>();
@@ -42,8 +40,9 @@ public class FetchData extends AppCompatActivity {
     Button button;
 
 
-    Spinner spinner,classspinner;
-    String classvalue;
+    Spinner roomspinner,classspinner,dayspinner,timespinner;
+
+    String classvalue,day,time,slotchild;
 
 
 
@@ -53,43 +52,44 @@ public class FetchData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fetch_data);
         textView = findViewById(R.id.text);
-        spinner=findViewById(R.id.roomspinner);
+        roomspinner=findViewById(R.id.roomspinner);
+        dayspinner=findViewById(R.id.dayspinner);
+        timespinner=findViewById(R.id.timespinner);
         classspinner=findViewById(R.id.classsspinner);
         button=findViewById(R.id.submit);
         int i=0;
-
-
-
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 textView.setText("");
                 classvalue=classspinner.getSelectedItem().toString();
+                day=dayspinner.getSelectedItem().toString();
+                time=timespinner.getSelectedItem().toString();
+                slotchild=day+"("+time+")";
+                Log.d(TAG, "SLOT OF TIME CHOSEN: "+slotchild);
+
                 final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MasterTable");
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Log.d(TAG, "Class Value: "+classvalue);
-
                         dataSnapshot.child(classvalue).getRef().addChildEventListener(new ChildEventListener() {
                             @Override
                             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                        object=dataSnapshot.getValue(Object.class);
-//                        json=new Gson().toJson(object);
-//                        jsonlist.add(json);
-//                        Log.d(TAG, "THIS TIME JSON OBJECT LETS SEE WHAT: "+jsonlist);
-                                int i=0;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    { String key = data.getKey();
-                                        String value = data.getValue().toString();
-                                        map.put(key, value);
-                                    }
+                                if(dataSnapshot.getKey().equals(slotchild)){
+                                    Log.d(TAG, "onChildAdded: "+dataSnapshot.getValue());
+                                    for (DataSnapshot data:dataSnapshot.getChildren()
+                                         ) {
+                                        if(data.getKey().equals("teacherid")){
+                                            Log.d(TAG, "onChildAdded: "+data.getValue());
+                                            textView.append("Your Teacher is  "+ data.getValue()+"\n");
+                                        }
+                                        if(data.getKey().equals("room")){
+                                            Log.d(TAG, "onChildAdded: "+data.getValue());
+                                            textView.append("Your Room is " +data.getValue()+"\n");
+                                        }
+                                        }
                                 }
-
-                                Log.d(TAG, "Status of Map "+map);
-                                textView.append(map.toString()+"\n");
                             }
 
 
@@ -113,44 +113,12 @@ public class FetchData extends AppCompatActivity {
 
                             }
                         });
-
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
-
             }
         });
-
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int index = 1;
-//
-//                Log.d(TAG, "BUTTTON HAS BEEN CLICKED");
-//
-//                    Iterator<Map<String, String>> iterator = compositemap.iterator();
-//                    while (iterator.hasNext()) {
-//                        Log.d(TAG, "INSIDE THE WHILE LOOP " + iterator);
-//                        Map<String, String> value = iterator.next();
-//                        Set<Map.Entry<String, String>> entries = value.entrySet();
-//
-//                        for (Map.Entry<String, String> entry : entries) {
-//                            Log.d(TAG, "INSIDE THE COMPLEX CODE " + entry);
-//
-//
-//                        }
-//                        index++;
-//                    }
-//
-//            }
-//        });
-
     }
-
 }

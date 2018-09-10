@@ -201,8 +201,7 @@ public class FetchData extends AppCompatActivity {
 
 
                 }
-            }
-        });
+
 
        // ======================================================================================================================================================Below code NOT TO BE DELETED !!!
                 //RETRIEVE(GIVEN : TEACHER)
@@ -215,6 +214,8 @@ public class FetchData extends AppCompatActivity {
                 && classspinner.getSelectedItemPosition()==0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
+
+            Log.d(TAG, "MAYURI GUPTA ACTIVITYT ==========");
             dayspinner = findViewById(R.id.dayspinner);
             timespinner = findViewById(R.id.timespinner);
             vday = dayspinner.getSelectedItem().toString();
@@ -380,7 +381,8 @@ public class FetchData extends AppCompatActivity {
             });
         }
 //========================================================================================================================================================================================
-
+            }
+        });
 
 
 

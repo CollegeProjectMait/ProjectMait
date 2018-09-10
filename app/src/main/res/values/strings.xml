@@ -2,6 +2,7 @@
     <string name="app_name">ProjectMait</string>
 
     <string-array name="days">
+        <item>--Select the Day--</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
@@ -11,6 +12,7 @@
     </string-array>
 
     <string-array name="time_slots">
+        <item>--Select the TimeSlot--</item>
         <item>9:15-10:05</item>
         <item>10:05-10:55</item>
         <item>10:55-11:45</item>

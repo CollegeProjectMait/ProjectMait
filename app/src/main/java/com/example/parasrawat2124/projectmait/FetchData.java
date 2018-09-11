@@ -392,20 +392,28 @@ public class FetchData extends AppCompatActivity {
                         && classspinner.getSelectedItemPosition()==0
                         && roomspinner.getSelectedItemPosition()!=0
                         && teacherspinner.getSelectedItemPosition()==0) {
+
+                    Log.d(TAG, "=====================================================  "+"ENTERED MY CASE");
                     dbref_room.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             vday=dayspinner.getSelectedItem().toString();
                             vtime=timespinner.getSelectedItem().toString();
+
+                            Log.d(TAG, "================================== "+vtime+vday);
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 if(child.hasChild(vday+"("+vtime+")")){
-                                    if(child.child(vday+"("+vtime+")").child("room").toString().equals(vroom)) {
+                                    Log.d(TAG, "PRINT MY CHILD: "+child);
+                                    Log.d(TAG, "PRINT MY CHILD 2 "+child.child(vday+"("+vtime+")").child("room").toString());//room
+                                    if(child.child(vday+"("+vtime+")").child("room").getValue().toString().equals(vroom)) {
+                                        Log.d(TAG, "PRINT MY CHILD KA BACHCHA "+vteacher +vclass);
                                         vteacher = child.child(vday + "(" + vtime + ")").child("teacherid").getValue().toString();
                                         vclass = child.child(vday + "(" + vtime + ")").child("classid").getValue().toString();
                                         textView.setText("\nFor Room no. : " + vroom
                                                 + "\nDay|Time : " + vday + "|" + vtime
                                                 + "\nTeacher : " + vteacher
                                                 + "\nClass : " + vclass);
+                                        Log.d(TAG, "=========================================================="+vclass+ vteacher);
                                     }
                                 }
                             }
@@ -438,6 +446,7 @@ public class FetchData extends AppCompatActivity {
                                             textView.append("\nTime : " + time
                                                     + "\nTeacher : " + vteacher
                                                     + "\nClass : " + vclass + "\n");
+                                            Log.d(TAG, "============================ "+vclass);
                                         }
                                     }
                                 }

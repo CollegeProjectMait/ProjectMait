@@ -40,7 +40,7 @@ public class FetchData extends AppCompatActivity {
     Spinner roomspinner,classspinner,dayspinner,timespinner,teacherspinner;
     String classvalue,day,time,slotchild;
 
-    String vday,vtime,vroom,vclass;
+    String vday,vtime,vroom,vclass,vteacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,7 +205,7 @@ public class FetchData extends AppCompatActivity {
        // ======================================================================================================================================================Below code NOT TO BE DELETED !!!
                 //RETRIEVE(GIVEN : TEACHER)
                 teacherspinner=findViewById(R.id.teacherspinner);
-        final String vteacher=teacherspinner.getSelectedItem().toString();
+                vteacher=teacherspinner.getSelectedItem().toString();
         DatabaseReference dbref_teach=FirebaseDatabase.getInstance().getReference("TeacherTimeTable").child(vteacher);
 
         //given : Teacher,Day,Time | result :room,class===========================================================
@@ -229,7 +229,7 @@ public class FetchData extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                            textView.setText("No matching result found");
                 }
             });
         }
@@ -255,7 +255,7 @@ public class FetchData extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    textView.setText("No matching result found");
                 }
             });
         }
@@ -281,6 +281,7 @@ public class FetchData extends AppCompatActivity {
                                     + "\nROOM : " + vroom
                                     + "\nCLASS : " + vclass + "\n");
                         }
+                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -310,6 +311,7 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nROOM : " + vroom + "\n");
                         }
+                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -339,6 +341,7 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nCLASS : " + vclass + "\n");
                         }
+                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -370,6 +373,7 @@ public class FetchData extends AppCompatActivity {
                                     + "\nCLASS : " + vclass
                                     + "\nROOM : " + vroom + "\n");
                         }
+                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -380,9 +384,75 @@ public class FetchData extends AppCompatActivity {
             });
         }
 //========================================================================================================================================================================================
+                vroom=roomspinner.getSelectedItem().toString();
+                DatabaseReference dbref_room=FirebaseDatabase.getInstance().getReference("TeacherTimeTable");
+
+                //given : room,day,time | result : which teacher is teaching which class in the given room at given instance
+                if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()!=0
+                        && classspinner.getSelectedItemPosition()==0
+                        && roomspinner.getSelectedItemPosition()!=0
+                        && teacherspinner.getSelectedItemPosition()==0) {
+                    dbref_room.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            vday=dayspinner.getSelectedItem().toString();
+                            vtime=timespinner.getSelectedItem().toString();
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                if(child.hasChild(vday+"("+vtime+")")){
+                                    if(child.child(vday+"("+vtime+")").child("room").toString().equals(vroom)) {
+                                        vteacher = child.child(vday + "(" + vtime + ")").child("teacherid").getValue().toString();
+                                        vclass = child.child(vday + "(" + vtime + ")").child("classid").getValue().toString();
+                                        textView.setText("\nFor Room no. : " + vroom
+                                                + "\nDay|Time : " + vday + "|" + vtime
+                                                + "\nTeacher : " + vteacher
+                                                + "\nClass : " + vclass);
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                //given : room,day | result : room's schedule for the day
+                if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
+                        && classspinner.getSelectedItemPosition()==0
+                        && roomspinner.getSelectedItemPosition()!=0
+                        && teacherspinner.getSelectedItemPosition()==0) {
+                    dbref_room.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            vday=dayspinner.getSelectedItem().toString();
+                            textView.setText("\nFor Room no. : "+vroom
+                                    +"\nDay : "+vday+"\n");
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                for(String time : getResources().getStringArray(R.array.time_slots)) {
+                                    if (child.hasChild(vday + "(" + time + ")")) {
+                                        if(child.child(vday + "(" + time + ")").child("room").getValue().toString().equals(vroom)) {
+                                            vteacher = child.child(vday + "(" + time + ")").child("teacherid").getValue().toString();
+                                            vclass = child.child(vday + "(" + time + ")").child("classid").getValue().toString();
+                                            textView.append("\nTime : " + time
+                                                    + "\nTeacher : " + vteacher
+                                                    + "\nClass : " + vclass + "\n");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
         });
-
+//========================================================================================================================================================================
 
 
 

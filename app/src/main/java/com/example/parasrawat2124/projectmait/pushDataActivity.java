@@ -17,7 +17,7 @@ import java.util.List;
 public class pushDataActivity extends AppCompatActivity {
 
    Spinner classspinner,roomspinner,teacherspinner,daysspinner,timeslotspinner;
-   DatabaseReference databaseReference,dbref_teach;
+   DatabaseReference databaseReference,dbref_teach,dbref_room;
    Button push;
    List<String> paraslist;
    int count=0;
@@ -109,5 +109,8 @@ public class pushDataActivity extends AppCompatActivity {
        //==============================
         dbref_teach=FirebaseDatabase.getInstance().getReference("TeacherTimeTable");
         dbref_teach.child(teacher).child(day+"("+time+")").setValue(data);
+
+        dbref_room=FirebaseDatabase.getInstance().getReference("RoomTimeTable");
+        dbref_room.child(room).child(day+"("+time+")").setValue(data);
     }
 }

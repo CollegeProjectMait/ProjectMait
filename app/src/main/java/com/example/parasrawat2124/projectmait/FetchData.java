@@ -222,9 +222,11 @@ public class FetchData extends AppCompatActivity {
             dbref_teach.child(vday + "(" + vtime + ")").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    vclass=dataSnapshot.child("classid").getValue().toString();
+                    vroom=dataSnapshot.child("room").getValue().toString();
                     textView.setText("Teacher : " + vteacher +
-                            "\nis teaching class : " + dataSnapshot.child("classid").getValue().toString() +
-                            "\nin room no : " + dataSnapshot.child("room").getValue().toString());
+                            "\nis teaching class : " + vclass +
+                            "\nin room no : " + vroom);
                 }
 
                 @Override
@@ -281,7 +283,6 @@ public class FetchData extends AppCompatActivity {
                                     + "\nROOM : " + vroom
                                     + "\nCLASS : " + vclass + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -311,7 +312,6 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nROOM : " + vroom + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -341,7 +341,6 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nCLASS : " + vclass + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -373,7 +372,6 @@ public class FetchData extends AppCompatActivity {
                                     + "\nCLASS : " + vclass
                                     + "\nROOM : " + vroom + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -399,7 +397,7 @@ public class FetchData extends AppCompatActivity {
                             vtime=timespinner.getSelectedItem().toString();
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 if(child.hasChild(vday+"("+vtime+")")){
-                                    if(child.child(vday+"("+vtime+")").child("room").toString().equals(vroom)) {
+                                    if(child.child(vday+"("+vtime+")").child("room").getValue().toString().equals(vroom)) {
                                         vteacher = child.child(vday + "(" + vtime + ")").child("teacherid").getValue().toString();
                                         vclass = child.child(vday + "(" + vtime + ")").child("classid").getValue().toString();
                                         textView.setText("\nFor Room no. : " + vroom

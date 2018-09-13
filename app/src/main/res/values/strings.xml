@@ -34,11 +34,11 @@
     </string-array>
     <string-array name="teachers">
         <item>No Idea</item>
-        <item>namita</item>
-        <item>Shamita</item>
-        <item>Papita</item>
-        <item>Sapita</item>
-        <item>Kapita</item>
+        <item>DrNamita</item>
+        <item>Neeraj</item>
+        <item>Neelam</item>
+        <item>Yogesh</item>
+        <item>Deepak</item>
     </string-array>
     <string-array name="rooms">
         <item>No Idea</item>

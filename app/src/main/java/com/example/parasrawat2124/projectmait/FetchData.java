@@ -219,12 +219,31 @@ public class FetchData extends AppCompatActivity {
             timespinner = findViewById(R.id.timespinner);
             vday = dayspinner.getSelectedItem().toString();
             vtime = timespinner.getSelectedItem().toString();
-            dbref_teach.child(vday + "(" + vtime + ")").addValueEventListener(new ValueEventListener() {
+            dbref_teach.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    textView.setText("Teacher : " + vteacher +
-                            "\nis teaching class : " + dataSnapshot.child("classid").getValue().toString() +
-                            "\nin room no : " + dataSnapshot.child("room").getValue().toString());
+//                    if(!dataSnapshot.toString().isEmpty()) {
+//                        vclass = dataSnapshot.child("classid").getValue().toString();
+//                        vroom = dataSnapshot.child("room").getValue().toString();
+//                        if (!vclass.isEmpty() && !vroom.isEmpty()) {
+//                            textView.append("Teacher : " + vteacher +
+//                                    "\nis teaching class : " + vclass +
+//                                    "\nin room no : " + vroom);
+//                        }
+//                    }
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Log.d(TAG,child.toString());
+                            if (child.getKey().equals(vday + "(" + vtime + ")")) {
+                                Log.d(TAG,"got in");
+                                    vroom = child.child("room").getValue().toString();
+                                    vclass = child.child("classid").getValue().toString();
+                                textView.append("Teacher : " + vteacher +
+                                    "\nis teaching class : " + vclass +
+                                    "\nin room no : " + vroom);
+                                    Log.d(TAG, "============================ "+vclass);
+
+                            }
+                    }
                 }
 
                 @Override
@@ -281,7 +300,6 @@ public class FetchData extends AppCompatActivity {
                                     + "\nROOM : " + vroom
                                     + "\nCLASS : " + vclass + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -311,7 +329,6 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nROOM : " + vroom + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -341,7 +358,6 @@ public class FetchData extends AppCompatActivity {
                             textView.append("\nDAY|TIME : " + vday + "|" + vtime
                                     + "\nCLASS : " + vclass + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 
@@ -373,7 +389,6 @@ public class FetchData extends AppCompatActivity {
                                     + "\nCLASS : " + vclass
                                     + "\nROOM : " + vroom + "\n");
                         }
-                        else textView.setText("No matching result found");
                     }
                 }
 

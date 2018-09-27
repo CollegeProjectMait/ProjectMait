@@ -27,27 +27,82 @@
 
     <string-array name="clas">
         <item>No Idea</item>
-        <item>C-123</item>
-        <item>C-456</item>
-        <item>C-789</item>
-        <item>C-111213</item>
+        <item>5C1</item>
+        <item>5C2</item>
+        <item>5C3</item>
+        <item>5C4</item>
+        <item>5C5</item>
+        <item>5C6</item>
+        <item>5C7</item>
+        <item>5C8</item>
+        <item>5C9</item>
+        <item>5C11</item>
+        <item>5C12</item>
+        <item>5C13</item>
     </string-array>
     <string-array name="teachers">
         <item>No Idea</item>
-        <item>DrNamita</item>
+        <item>Namita Gupta</item>
+        <item>Neelam Sharma</item>
+        <item>Neetu Gupta</item>
+        <item>Jyoti Sharma</item>
+        <item>Ashish Khanna</item>
         <item>Neeraj</item>
-        <item>Neelam</item>
         <item>Yogesh</item>
         <item>Deepak</item>
     </string-array>
     <string-array name="rooms">
         <item>No Idea</item>
+        <item>109</item>
+        <item>110</item>
+        <item>111</item>
         <item>112</item>
         <item>113</item>
         <item>114</item>
         <item>121</item>
         <item>122</item>
         <item>123</item>
-        <item>1124</item>
+        <item>124</item>
+        <item>131</item>
+        <item>132</item>
+        <item>133</item>
+        <item>134</item>
+        <item>141</item>
+        <item>142</item>
+        <item>143</item>
+        <item>144</item>
+    </string-array>
+    <string-array name="roomtype">
+        <item>Theory</item>
+        <item>Lab</item>
+        <item>Tutorial</item>
+    </string-array>
+    <string-array name="subjects">
+        <item>--Select the Subject--</item>
+        <item>Communication Skills</item>
+        <item>ADA</item>
+        <item>Java</item>
+        <item>Digital Communication</item>
+        <item>Industrial Management</item>
+    </string-array>
+    <string-array name="theoryrooms">
+        <item>109</item>
+        <item>110</item>
+        <item>121</item>
+        <item>122</item>
+        <item>132</item>
+        <item>133</item>
+    </string-array>
+    <string-array name="labrooms">
+        <item>111</item>
+        <item>112</item>
+        <item>114</item>
+        <item>145</item>
+        <item>146</item>
+    </string-array>
+    <string-array name="tutrooms">
+        <item>142</item>
+        <item>143</item>
+        <item>144</item>
     </string-array>
 </resources>

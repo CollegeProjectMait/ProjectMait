@@ -76,7 +76,7 @@
             android:id="@+id/tclass"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Class"/>
+            android:text="Class" />
 
         <Spinner
             android:id="@+id/classsspinner"
@@ -84,21 +84,46 @@
             android:layout_height="25dp"
             android:entries="@array/clas"></Spinner>
         <TextView
+            android:id="@+id/troomtype"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Room Type"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/roomtypespinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/roomtype"></Spinner>
+        <TextView
             android:id="@+id/troom"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-           android:text="Room"/>
+           android:text="Room"
+            android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/roomspinner"
             android:layout_width="match_parent"
+            android:layout_height="25dp"></Spinner>
+        <TextView
+            android:id="@+id/tsub"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:entries="@array/rooms"></Spinner>
+            android:text="Subject"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/subjectspinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/subjects"></Spinner>
         <TextView
             android:id="@+id/tteacher"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Teacher"/>
+            android:text="Teacher"
+            android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/teacherspinner"
@@ -111,35 +136,31 @@
         android:id="@+id/push"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="72dp"
-        android:layout_marginStart="82dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
         android:text="Push"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_below="@id/llreq"/>
 
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/push"
-        android:layout_marginEnd="101dp"
         android:background="@drawable/button_design"
         android:padding="16dp"
         android:text="Fetch"
-        android:textColor="@android:color/white" />
-
-    <TextView
+        android:textColor="@android:color/white"
         android:layout_below="@id/llreq"
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="229dp"
-        android:textSize="20sp" />
+        android:layout_toEndOf="@id/push"/>
+
+    <!--<TextView-->
+        <!--android:layout_below="@id/llreq"-->
+        <!--android:id="@+id/result"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="229dp"-->
+        <!--android:textSize="20sp" />-->
 
 </RelativeLayout>

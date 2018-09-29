@@ -81,7 +81,8 @@
         android:text="Teacher"
         android:id="@+id/teacher"
         android:padding="5dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/subjectspinner"/>
     <Spinner
         android:id="@+id/teacherspinner"
         android:layout_width="match_parent"
@@ -109,6 +110,10 @@
         android:onClick="reset"
         android:text="RESET"
         android:textColor="@android:color/white" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reset">
     <TextView
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
@@ -116,6 +121,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text"
         android:textSize="20sp"
-        android:paddingLeft="10dp"
-        android:layout_below="@+id/reset"/>
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
+    </ScrollView>
 </RelativeLayout>

@@ -210,7 +210,7 @@ public class pushDataActivity extends AppCompatActivity {
        String key=databaseReference.push().getKey();
        ParasRawatPushData data=new ParasRawatPushData(classid,day,time,teacher,room,roomtype,subject);
 
-       //TODO put a check so that one teacher cnt be assigned(added) to more than one class for same day&time like for wednesday(9:15-10:05).
+       //TODO put a check so that one teacher cnt be assigned(added) to more than one class for same sday&stime like for wednesday(9:15-10:05).
        databaseReference.child(classid).child(day+"("+time+")").setValue(data);
 
         dbref_teach=FirebaseDatabase.getInstance().getReference("TeacherTimeTable");

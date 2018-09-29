@@ -14,7 +14,6 @@
         <activity android:name=".LoginActivity">
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".GetResultActivity" />
         <activity android:name=".pushDataActivity" >
 
         <intent-filter>

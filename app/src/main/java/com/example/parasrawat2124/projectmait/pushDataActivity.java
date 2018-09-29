@@ -1,6 +1,8 @@
 package com.example.parasrawat2124.projectmait;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +14,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class pushDataActivity extends AppCompatActivity {
 
    Spinner classspinner,roomspinner,teacherspinner,daysspinner,timeslotspinner,typespinner,subspinner;
-   DatabaseReference databaseReference,dbref_teach,dbref_room,dbref_rtype;
+   DatabaseReference databaseReference,dbref_teach,dbref_room,dbref_rtype,dbref_stype,dbref_teachinfo;
    Button push;
    List<String> paraslist;
    int count=0;
@@ -29,7 +37,8 @@ public class pushDataActivity extends AppCompatActivity {
     Object object;
     Button fetch;
     ArrayAdapter<String> typeadap;
-//    ArrayList<String> labrooms=new ArrayList<String>();
+    ArrayList<String> rooms,subjects,teachers,teachsubjects=new ArrayList<String>();
+    String node=null;
 
 
    public static final String TAG="RESULT ACTIVITY";
@@ -48,6 +57,9 @@ public class pushDataActivity extends AppCompatActivity {
         push=findViewById(R.id.push);
         fetch=findViewById(R.id.next);
         databaseReference=FirebaseDatabase.getInstance().getReference("MasterTable");
+        dbref_rtype=FirebaseDatabase.getInstance().getReference("RoomInfo");
+        dbref_stype=FirebaseDatabase.getInstance().getReference("SubjectInfo");
+        dbref_teachinfo=FirebaseDatabase.getInstance().getReference("TeacherInfo");
         paraslist=new ArrayList<>();
         //result=findViewById(R.id.result);
 
@@ -99,19 +111,83 @@ public class pushDataActivity extends AppCompatActivity {
             }
         });
 
+//Populate rooms and subjects according to theory/lab/tut
         typespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    Log.d("selected item",typespinner.getSelectedItem().toString());
-                    switch (i){
-                        case 0 : typeadap=new ArrayAdapter<String>(pushDataActivity.this,android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.theoryrooms));
-                            break;
-                        case 1 : typeadap=new ArrayAdapter<String>(pushDataActivity.this,android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.labrooms));
-                            break;
-                        case 2 : typeadap=new ArrayAdapter<String>(pushDataActivity.this,android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.tutrooms));
+                switch (i){
+                    case 0 : node="Theory";
+                        break;
+                    case 1 : node="Lab";
+                        break;
+                    case 2 : node="Tut";
+                }
+                dbref_rtype.child(node).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        rooms=new ArrayList<String>();
+                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+                            rooms.add((String)ds.getValue());
+                        }
+                        typeadap = new ArrayAdapter<String>(pushDataActivity.this, android.R.layout.simple_spinner_item, rooms);
+                        typeadap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        roomspinner.setAdapter(typeadap);
                     }
-                    typeadap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    roomspinner.setAdapter(typeadap);
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                dbref_stype.child(node).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        subjects=new ArrayList<String>();
+                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+                            subjects.add((String)ds.getValue());
+                        }
+                        typeadap = new ArrayAdapter<String>(pushDataActivity.this, android.R.layout.simple_spinner_item, subjects);
+                        typeadap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        subspinner.setAdapter(typeadap);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+//Populate teachers according to subjects
+        subspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                final String subject=subspinner.getSelectedItem().toString();
+                dbref_teachinfo.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        teachers=new ArrayList<String>();
+                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+                            if(ds.getValue().toString().contains(subject))
+                                teachers.add(ds.getKey());
+                        }
+                        typeadap = new ArrayAdapter<String>(pushDataActivity.this, android.R.layout.simple_spinner_item, teachers);
+                        typeadap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        teacherspinner.setAdapter(typeadap);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -143,16 +219,17 @@ public class pushDataActivity extends AppCompatActivity {
         dbref_room=FirebaseDatabase.getInstance().getReference("RoomTimeTable");
         dbref_room.child(room).child(day+"("+time+")").setValue(data);
 
-//        dbref_rtype=FirebaseDatabase.getInstance().getReference("RoomInfo");
-//
 //        switch (typespinner.getSelectedItemPosition()){
-//            case 0 : //dbref_rtype.child("Theory").setValue(rooms);
+//            case 0 : subjects.add(subspinner.getSelectedItem().toString());
 //                break;
-//            case 1 :
-//                dbref_rtype.child("Lab").setValue(labrooms);
+//            case 1 : subjects.add(subspinner.getSelectedItem().toString());
 //                break;
-//            case 2 :          labrooms.add(roomspinner.getSelectedItem().toString());
-//                dbref_rtype.child("Tut").setValue(labrooms);
+//            case 2 : subjects.add(subspinner.getSelectedItem().toString());
 //        }
+//        dbref_teachinfo.child(teacherspinner.getSelectedItem().toString()).child(node).setValue(subjects);
+
+        //ADD teacherinfo data
+//        teachsubjects.add(subspinner.getSelectedItem().toString());
+//        dbref_teachinfo.child(teacherspinner.getSelectedItem().toString()).setValue(teachsubjects);
     }
 }

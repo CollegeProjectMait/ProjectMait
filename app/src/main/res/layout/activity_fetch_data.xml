@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView01"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none" >
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,106 +13,81 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fetchdata"/>
-
-
-
     <TextView
-        android:textColor="#DC143C"
+        android:textColor="@color/theme_red"
         android:layout_below="@+id/fetchdata"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
         android:text="Day"
         android:id="@+id/day"
         android:padding="5dp"/>
-
     <Spinner
         android:id="@+id/dayspinner"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/day"
-        android:entries="@array/days">
-
-    </Spinner>
-
+        android:entries="@array/days"/>
     <TextView
-        android:textColor="#DC143C"
+        android:textColor="@color/theme_red"
         android:layout_below="@+id/dayspinner"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
         android:text="Timeslot"
         android:id="@+id/time"
-        android:padding="5dp"/>
-
+        android:padding="5dp"
+        android:layout_marginTop="16dp"/>
     <Spinner
         android:id="@+id/timespinner"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/time"
-        android:entries="@array/time_slots">
-
-    </Spinner>
-
+        android:entries="@array/time_slots"/>
     <TextView
-        android:textColor="#DC143C"
+        android:textColor="@color/theme_red"
         android:layout_below="@+id/timespinner"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
         android:text="Class"
         android:id="@+id/classheading"
         android:padding="5dp"
-        tools:ignore="UnknownId" />
-
+        tools:ignore="UnknownId"
+        android:layout_marginTop="16dp"/>
     <Spinner
         android:id="@+id/classsspinner"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/classheading"
-        android:entries="@array/clas">
-
-    </Spinner>
-
+        android:entries="@array/clas"/>
     <TextView
-        android:textColor="#DC143C"
+        android:textColor="@color/theme_red"
         android:layout_below="@+id/classsspinner"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
         android:text="Room"
         android:id="@+id/room"
-        android:padding="5dp"/>
-
+        android:padding="5dp"
+        android:layout_marginTop="16dp"/>
     <Spinner
         android:id="@+id/roomspinner"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/room"
-        android:entries="@array/rooms">
-
-    </Spinner>
-
-
+        android:entries="@array/rooms"/>
     <TextView
-        android:textColor="#DC143C"
+        android:textColor="@color/theme_red"
         android:layout_below="@+id/roomspinner"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
         android:text="Teacher"
         android:id="@+id/teacher"
-        android:padding="5dp"/>
-
+        android:padding="5dp"
+        android:layout_marginTop="16dp"/>
     <Spinner
         android:id="@+id/teacherspinner"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/teacher"
-        android:entries="@array/teachers">
-
-    </Spinner>
-
+        android:entries="@array/teachers"/>
     <Button
         android:id="@+id/submit"
         android:layout_width="200dp"
@@ -128,20 +96,19 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_design"
         android:text="Submit"
-        android:textColor="@android:color/white" />
-
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
     <Button
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/submit"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_design"
         android:onClick="reset"
         android:text="RESET"
         android:textColor="@android:color/white" />
-
     <TextView
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
@@ -152,4 +119,3 @@
         android:paddingLeft="10dp"
         android:layout_below="@+id/reset"/>
 </RelativeLayout>
-</ScrollView>

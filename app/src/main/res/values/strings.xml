@@ -2,7 +2,7 @@
     <string name="app_name">ProjectMait</string>
 
     <string-array name="days">
-        <item>No Idea</item>
+        <item>--Day--</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
@@ -12,7 +12,7 @@
     </string-array>
 
     <string-array name="time_slots">
-        <item>No Idea</item>
+        <item>--Time Slot--</item>
         <item>9:15-10:05</item>
         <item>10:05-10:55</item>
         <item>10:55-11:45</item>
@@ -26,7 +26,7 @@
     </string-array>
 
     <string-array name="clas">
-        <item>No Idea</item>
+        <item>--Class--</item>
         <item>5C1</item>
         <item>5C2</item>
         <item>5C3</item>
@@ -41,7 +41,7 @@
         <item>5C13</item>
     </string-array>
     <string-array name="teachers">
-        <item>No Idea</item>
+        <item>--Select the teacher--</item>
         <item>Namita Gupta</item>
         <item>Neelam Sharma</item>
         <item>Neetu Gupta</item>
@@ -52,7 +52,7 @@
         <item>Deepak</item>
     </string-array>
     <string-array name="rooms">
-        <item>No Idea</item>
+        <item>--Select the room--</item>
         <item>109</item>
         <item>110</item>
         <item>111</item>
@@ -84,6 +84,7 @@
         <item>Java</item>
         <item>Digital Communication</item>
         <item>Industrial Management</item>
+        <item>Software Engineering</item>
     </string-array>
     <string-array name="theoryrooms">
         <item>109</item>

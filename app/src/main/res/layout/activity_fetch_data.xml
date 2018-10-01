@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@+id/classheading"
-        android:entries="@array/clas"/>
+        android:entries="@array/thclasses"/>
     <TextView
         android:textColor="@color/theme_red"
         android:layout_below="@+id/classsspinner"

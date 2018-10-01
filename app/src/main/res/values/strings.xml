@@ -24,7 +24,7 @@
         <item>ALL SLOTS</item>
     </string-array>
 
-    <string-array name="clas">
+    <string-array name="ltclasses">
         <item>--Select the Class--</item>
         <item>5C1</item>
         <item>5C2</item>
@@ -38,6 +38,12 @@
         <item>5C11</item>
         <item>5C12</item>
         <item>5C13</item>
+    </string-array>
+    <string-array name="thclasses">
+        <item>5C123</item>
+        <item>5C456</item>
+        <item>5C789</item>
+        <item>5C111213</item>
     </string-array>
     <string-array name="teachers">
         <item>--Select the teacher--</item>

@@ -73,28 +73,28 @@
         android:layout_below="@id/top"
         android:layout_margin="16dp">
         <TextView
-            android:id="@+id/tclass"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:text="Class" />
-
-        <Spinner
-            android:id="@+id/classsspinner"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:entries="@array/clas"></Spinner>
-        <TextView
             android:id="@+id/troomtype"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:text="Room Type"
             android:layout_marginTop="16dp"/>
-
         <Spinner
             android:id="@+id/roomtypespinner"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:entries="@array/roomtype"></Spinner>
+        <TextView
+            android:id="@+id/tclass"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Class"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/classsspinner"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:entries="@array/thclasses"></Spinner>
         <TextView
             android:id="@+id/troom"
             android:layout_width="match_parent"
@@ -105,7 +105,8 @@
         <Spinner
             android:id="@+id/roomspinner"
             android:layout_width="match_parent"
-            android:layout_height="25dp"></Spinner>
+            android:layout_height="25dp"
+            android:entries="@array/rooms"></Spinner>
         <TextView
             android:id="@+id/tsub"
             android:layout_width="match_parent"
@@ -140,7 +141,8 @@
         android:padding="16dp"
         android:text="Push"
         android:textColor="@android:color/white"
-        android:layout_below="@id/llreq"/>
+        android:layout_below="@id/llreq"
+        android:onClick="pushData"/>
 
     <Button
         android:id="@+id/next"

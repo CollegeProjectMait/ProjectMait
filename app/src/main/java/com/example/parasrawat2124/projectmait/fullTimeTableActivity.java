@@ -78,6 +78,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
         for(int i=0;i<l;i++){
             TextView m=findViewById(ids[b[i]][a[i]]);
             m.setText(classes.get(i)+"\n"+rooms.get(i));
+            m.setTextSize(10);
         }
     }
 
@@ -87,6 +88,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
         for(int i=0;i<l;i++){
             TextView m=findViewById(ids[b[i]][a[i]]);
             m.setText(classes.get(i)+"\n"+teachers.get(i));
+            m.setTextSize(10);
         }
     }
 
@@ -99,7 +101,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
             String teacher=teachers.get(i);
             int c=teacher.indexOf(" ");
             String initials=Character.toString(teacher.charAt(0))+Character.toString(teacher.charAt(c+1));
-            m.setText(sub+"("+types.get(i)+")"+"\n"+initials+"\n"+rooms.get(i));
+            m.setText(sub+"\n("+types.get(i)+")"+"\n"+initials+"\n"+rooms.get(i));
             m.setTextSize(10);
         }
     }

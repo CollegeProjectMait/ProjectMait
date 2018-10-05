@@ -278,35 +278,22 @@ public class FetchData extends AppCompatActivity {
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
 
-            Log.d(TAG, "MAYURI GUPTA ACTIVITYT ==========");
             dbref_Teach.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    if(!dataSnapshot.toString().isEmpty()) {
-//                        vclass = dataSnapshot.child("classid").getValue().toString();
-//                        vroom = dataSnapshot.child("room").getValue().toString();
-//                        if (!vclass.isEmpty() && !vroom.isEmpty()) {
-//                            textView.append("Teacher : " + vteacher +
-//                                    "\nis teaching class : " + vclass +
-//                                    "\nin room no : " + vroom);
-//                        }
-//                    }
                     title="Teacher : "+steacher+
                             "\nDay|Time : "+sday+"|"+stime;
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        Log.d(TAG,child.toString());
                             if (child.getKey().equals(sday + "(" + stime + ")")) {
-                                Log.d(TAG,"got in");
                                     vroom = child.child("room").getValue().toString();
                                     vclass = child.child("classid").getValue().toString();
                                 msg.append("\nis teaching class : " + vclass +
                                     "\nin room no : " + vroom);
-                                    Log.d(TAG, "============================ "+vclass);
                                 exist=true;
                             }
                     }
                     if(exist) showmsg(title,msg.toString());
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("Free",steacher+" is free on\n"+sday+" during "+stime+"\nStaffRoom : ");
                 }
 
                 @Override
@@ -348,7 +335,7 @@ public class FetchData extends AppCompatActivity {
                         startActivity(i);
                         //showmsg(title,msg.toString());
                     }
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("Error","No matching record exists");
                 }
 
                 @Override
@@ -380,7 +367,7 @@ public class FetchData extends AppCompatActivity {
                         }
                     }
                     if(exist) showmsg(title,msg.toString());
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("Free",steacher+" has no classes on "+sday);
                 }
 
                 @Override
@@ -411,7 +398,7 @@ public class FetchData extends AppCompatActivity {
                         }
                     }
                     if(exist) showmsg(title,msg.toString());
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("",steacher+" does not teach "+sclass);
                 }
 
                 @Override
@@ -442,7 +429,7 @@ public class FetchData extends AppCompatActivity {
                         }
                     }
                     if(exist) showmsg(title,msg.toString());
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("",steacher+" does not take classes in Room "+sroom);
                 }
 
                 @Override
@@ -474,7 +461,7 @@ public class FetchData extends AppCompatActivity {
                         }
                     }
                     if(exist) showmsg(title,msg.toString());
-                    else showmsg("Error","No matching result exist");
+                    else showmsg("Free",steacher+" is free during "+stime+" for all days");
                 }
 
                 @Override
@@ -515,7 +502,7 @@ public class FetchData extends AppCompatActivity {
                                 }
                             }
                             if(exist) showmsg(title,msg.toString());
-                            else showmsg("Error","No matching result exist");
+                            else showmsg("Free","Room "+sroom+" is free on \n"+sday+" during "+stime);
                         }
 
                         @Override
@@ -551,7 +538,7 @@ public class FetchData extends AppCompatActivity {
                                 }
                             }
                             if(exist) showmsg(title,msg.toString());
-                            else showmsg("Error","No matching result exist");
+                            else showmsg("Free",sroom+" if free on "+sday);
                         }
 
                         @Override
@@ -598,7 +585,7 @@ public class FetchData extends AppCompatActivity {
                                 startActivity(i);
                                 //showmsg(title,msg.toString());
                             }
-                            else showmsg("Error","No matching result exist");
+                            else showmsg("Error","No matching record exists");
                         }
 
                         @Override

@@ -30,6 +30,7 @@ public class pushDataActivity extends AppCompatActivity {
     ArrayList<String> rooms,subjects,teachers,teachsubjects=new ArrayList<String>();
     String node=null;
     String sday,stime,sclass,sroom,steacher,sroomtype,ssubject;
+    ArrayList<String> addsubjects=new ArrayList<String>();
 
 
    public static final String TAG="RESULT ACTIVITY";
@@ -46,14 +47,6 @@ public class pushDataActivity extends AppCompatActivity {
         timeslotspinner=findViewById(R.id.timeslotsspinner);
         typespinner=findViewById(R.id.roomtypespinner);
         subspinner=findViewById(R.id.subjectspinner);
-
-        sclass=classspinner.getSelectedItem().toString();
-        sday=daysspinner.getSelectedItem().toString();
-        stime=timeslotspinner.getSelectedItem().toString();
-        steacher=teacherspinner.getSelectedItem().toString();
-        sroom=roomspinner.getSelectedItem().toString();
-        sroomtype=typespinner.getSelectedItem().toString();
-        ssubject=subspinner.getSelectedItem().toString();
 
         fetch=findViewById(R.id.next);
 
@@ -164,6 +157,15 @@ public class pushDataActivity extends AppCompatActivity {
     }
 
     public void pushData(View view){
+
+        sclass=classspinner.getSelectedItem().toString();
+        sday=daysspinner.getSelectedItem().toString();
+        stime=timeslotspinner.getSelectedItem().toString();
+        steacher=teacherspinner.getSelectedItem().toString();
+        sroom=roomspinner.getSelectedItem().toString();
+        sroomtype=typespinner.getSelectedItem().toString();
+        ssubject=subspinner.getSelectedItem().toString();
+
        ParasRawatPushData data=new ParasRawatPushData(sclass,sday,stime,steacher,sroom,sroomtype,ssubject);
 
        //TODO put a check so that one teacher cnt be assigned(added) to more than one class for same sday&stime like for wednesday(9:15-10:05).
@@ -172,6 +174,10 @@ public class pushDataActivity extends AppCompatActivity {
         dbref_teach.child(steacher).child(sday+"("+stime+")").setValue(data);
 
         dbref_room.child(sroom).child(sday+"("+stime+")").setValue(data);
+
+        //add teacherinfo
+//        addsubjects.add(ssubject);
+//        dbref_teachinfo.child(steacher).setValue(addsubjects);
 
 //        switch (typespinner.getSelectedItemPosition()){
 //            case 0 : subjects.add(subspinner.getSelectedItem().toString());
@@ -186,5 +192,9 @@ public class pushDataActivity extends AppCompatActivity {
 //        teachsubjects.add(subspinner.getSelectedItem().toString());
 //        dbref_teachinfo.child(teacherspinner.getSelectedItem().toString()).setValue(teachsubjects);
 
+    }
+
+    public void addAnother(View view){
+        addsubjects=new ArrayList<String>();
     }
 }

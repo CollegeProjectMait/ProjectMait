@@ -40,6 +40,7 @@
         <item>5C13</item>
     </string-array>
     <string-array name="thclasses">
+        <item>--Select the Class--</item>
         <item>5C123</item>
         <item>5C456</item>
         <item>5C789</item>
@@ -47,6 +48,11 @@
     </string-array>
     <string-array name="teachers">
         <item>--Select the teacher--</item>
+        <item>Shalini Mishra</item>
+        <item>Anju Bharti</item>
+        <item>Sapna</item>
+        <item>Neetu</item>
+        <item>Saurabh</item>
         <item>Namita Gupta</item>
         <item>Neelam Sharma</item>
         <item>Neetu Gupta</item>

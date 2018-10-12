@@ -8,11 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:windowSoftInputMode="adjustResize"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".ParasRawatActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterUserActivity" />
+        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity android:name=".RegisterUserActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
         <activity android:name=".pushDataActivity">
 
         </activity>
@@ -29,7 +36,8 @@
         <activity android:name=".UserSelection">
 
         </activity>
-        <activity android:name=".OtpVerificationActivity">
+        <activity android:name=".OtpVerificationActivity"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>

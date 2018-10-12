@@ -28,9 +28,7 @@ public class dayScheduleDialog extends Dialog {
         super.onCreate(savedInstanceState);
         int[] time=checkTime();
         for(int i=0;i<l;i++){
-            Log.d("time[i]",Integer.toString(time[i]));
             if(time[i]!=-1) {
-                Log.d("time[i]!=-1",Integer.toString(time[i]));
                 TextView t = findViewById(tcards[time[i]]);
                 t.append(rooms.get(i)+"\n");
             }
@@ -39,10 +37,8 @@ public class dayScheduleDialog extends Dialog {
 
     public int[] checkTime() {
         int[] b = new int[l];
-        Log.d("l", Integer.toString(l));
         for (int i = 0; i < l; i++) {
             int dash = timeslots.get(i).indexOf("-");
-            Log.d("dash", Integer.toString(dash));
             if (dash != 0 && dash != -1) {
                 switch (timeslots.get(i).substring(0, dash)) {
                     case "9:15":

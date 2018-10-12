@@ -99,7 +99,8 @@ public class FetchData extends AppCompatActivity {
 
 
                 //given : class | result : class's TT==================================================================
-                if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
+                if(dayspinner.getSelectedItemPosition()==0
+                        && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()!=0
                         && roomspinner.getSelectedItemPosition()==0
                         && teacherspinner.getSelectedItemPosition()==0) {
@@ -216,7 +217,8 @@ public class FetchData extends AppCompatActivity {
 
 
         //given : Teacher,Day,Time | result :room,class===========================================================
-                else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()!=0
+                else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                    && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
                 && classspinner.getSelectedItemPosition()==0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -249,7 +251,8 @@ public class FetchData extends AppCompatActivity {
         }
 
         //given : Teacher | result : teacher's TT===========================================================
-                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
+                else if(dayspinner.getSelectedItemPosition()==0
+                        && timespinner.getSelectedItemPosition()==0
                 && classspinner.getSelectedItemPosition()==0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -292,7 +295,8 @@ public class FetchData extends AppCompatActivity {
         }
 
         //given : Teacher,Day | result : teacher's timetable of the sday================================================
-                else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
+                else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                    && timespinner.getSelectedItemPosition()==0
                 && classspinner.getSelectedItemPosition()==0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -327,7 +331,8 @@ public class FetchData extends AppCompatActivity {
         }
 
         //given : Teacher,class | result : when will the given teacher teach the given class================================
-                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
+                else if(dayspinner.getSelectedItemPosition()==0
+                        && timespinner.getSelectedItemPosition()==0
                 && classspinner.getSelectedItemPosition()!=0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -362,7 +367,8 @@ public class FetchData extends AppCompatActivity {
         }
 
         //given : Teacher,room | result : given teacher will teach whom&when in the given room================================
-                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
+                else if(dayspinner.getSelectedItemPosition()==0
+                        && timespinner.getSelectedItemPosition()==0
                 && classspinner.getSelectedItemPosition()==0
                 && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -396,7 +402,8 @@ public class FetchData extends AppCompatActivity {
         }
 
         //given : Teacher,stime ================================
-                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()!=0
+                else if(dayspinner.getSelectedItemPosition()==0
+                        && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
                 && classspinner.getSelectedItemPosition()==0
                 && roomspinner.getSelectedItemPosition()==0
                 && teacherspinner.getSelectedItemPosition()!=0) {
@@ -432,7 +439,8 @@ public class FetchData extends AppCompatActivity {
 //========================================================================================================================================================================================
 
                 //given :sday,EMPTY rooms | result : all rooms empty on a day
-                else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
+                else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                        && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()==0
                         && teacherspinner.getSelectedItemPosition()==0
                         && roomspinner.getSelectedItem().equals("Empty rooms")) {
@@ -463,7 +471,8 @@ public class FetchData extends AppCompatActivity {
                 }
 
                 //given :stime,EMPTY rooms | result : all rooms empty on a day
-                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()!=0
+                else if(dayspinner.getSelectedItemPosition()==0
+                        && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
                         && classspinner.getSelectedItemPosition()==0
                         && teacherspinner.getSelectedItemPosition()==0
                         && roomspinner.getSelectedItem().equals("Empty rooms")) {
@@ -494,7 +503,8 @@ public class FetchData extends AppCompatActivity {
                 }
 
                 //given : room,sday,stime | result : which teacher is teaching which class in the given room at given instance
-        else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()!=0
+        else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                        && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
                         && classspinner.getSelectedItemPosition()==0
                         && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
@@ -527,7 +537,8 @@ public class FetchData extends AppCompatActivity {
 
                 //given : room,sday | result : room's schedule for the sday
                 //TODO append "FREE" when not assigned anything to that room for the timeslot
-        else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
+        else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                        && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()==0
                         && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
@@ -610,10 +621,11 @@ public class FetchData extends AppCompatActivity {
 //========================================================================================================================================================================
 
                 //given : sday,stime,sclass,sroom,steacher
-        else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()!=0
-                        && classspinner.getSelectedItemPosition()==0
+        else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                        && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
+                        && classspinner.getSelectedItemPosition()!=0
                         && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
-                        && teacherspinner.getSelectedItemPosition()==0) {
+                        && teacherspinner.getSelectedItemPosition()!=0) {
                     dbref_room.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -643,7 +655,8 @@ public class FetchData extends AppCompatActivity {
 
                 //given : sclass,sday,stime
                 //TODO only theory lectures r cming till now
-                else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()!=0
+                else if((dayspinner.getSelectedItemPosition()!=0 || !dayspinner.getSelectedItem().equals("ALL SLOTS"))
+                        && (timespinner.getSelectedItemPosition()!=0 || !timespinner.getSelectedItem().equals("ALL SLOTS"))
                         && classspinner.getSelectedItemPosition()!=0
                         && roomspinner.getSelectedItemPosition()==0
                         && teacherspinner.getSelectedItemPosition()==0) {

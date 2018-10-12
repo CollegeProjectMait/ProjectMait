@@ -22,6 +22,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
     TextView thead;
     Bundle b;
     int l;
+    //grid.
     int[][] ids=new int[][]{{R.id.m1,R.id.t1,R.id.w1,R.id.th1,R.id.f1},
             {R.id.m2,R.id.t2,R.id.w2,R.id.th2,R.id.f2},
             {R.id.m3,R.id.t3,R.id.w3,R.id.th3,R.id.f3},
@@ -134,6 +135,8 @@ public class fullTimeTableActivity extends AppCompatActivity {
         }
     }
 
+    //a[i]={0,1,2,3,4]
+
     public int[] checkDay(ArrayList<String> days){
         int[] a=new int[l];
         for(int i=0;i<l;i++){
@@ -147,6 +150,8 @@ public class fullTimeTableActivity extends AppCompatActivity {
         }
         return a;
     }
+
+    //b={0,1,2,3,4,5,6,7,8}
     public int[] checkStartTime(ArrayList<String> times){
         int[] b=new int[l];
         for(int i=0;i<l;i++){

@@ -40,7 +40,7 @@
         android:layout_below="@id/roominfo">
         <EditText
             android:id="@+id/teachername"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:hint="teacher name"/>
         <EditText

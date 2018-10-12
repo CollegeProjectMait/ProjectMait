@@ -121,25 +121,6 @@
         <item>Digital Communication</item>
         <item>Industrial Management</item>
         <item>Software Engineering</item>
-    </string-array>
-    <string-array name="theoryrooms">
-        <item>109</item>
-        <item>110</item>
-        <item>121</item>
-        <item>122</item>
-        <item>132</item>
-        <item>133</item>
-    </string-array>
-    <string-array name="labrooms">
-        <item>111</item>
-        <item>112</item>
-        <item>114</item>
-        <item>145</item>
-        <item>146</item>
-    </string-array>
-    <string-array name="tutrooms">
-        <item>142</item>
-        <item>143</item>
-        <item>144</item>
+        <item>Other</item>
     </string-array>
 </resources>

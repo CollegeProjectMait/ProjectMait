@@ -40,12 +40,13 @@ public class AddActivity extends AppCompatActivity {
         subs.add(tsub.getSelectedItem().toString());
     }
     public void addTeacher(View view){
+        //TODO check on special characters like '.', '#', '$', '[', or ']' in name
         EditText tname=findViewById(R.id.teachername);
         EditText troom=findViewById(R.id.teacherroom);
         dbref_tinfo.child(tname.getText().toString()).setValue(subs);
         dbref_tinfo.child(tname.getText().toString()).child("room").setValue(troom.getText().toString());
         subs=new ArrayList<String>();
-//        tname.setText("");
-//        troom.setText("");
+        tname.setText("");
+        troom.setText("");
     }
 }

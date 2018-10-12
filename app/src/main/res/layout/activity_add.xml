@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+
+    <LinearLayout
+        android:id="@+id/roominfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/roomtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/roomtype"/>
+        <EditText
+            android:id="@+id/roomno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="roomno."/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to list"
+            android:onClick="addRoomList"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add room"
+            android:onClick="addRoom"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/teacherinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/roominfo">
+        <EditText
+            android:id="@+id/teachername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="teacher name"/>
+        <EditText
+            android:id="@+id/teacherroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="room"/>
+        <Spinner
+            android:id="@+id/tsubs"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/subjects"></Spinner>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Add to list"
+            android:onClick="addTSubList"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add "
+            android:onClick="addTeacher"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:app="http://schemas.android.com/apk/res/android"
+    app:fromAlpha="0.01"
+    app:toAlpha="1.0"
+    app:duration="1500"/>
+

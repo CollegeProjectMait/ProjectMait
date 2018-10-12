@@ -364,7 +364,7 @@ public class FetchData extends AppCompatActivity {
         //given : Teacher,room | result : given teacher will teach whom&when in the given room================================
                 else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
                 && classspinner.getSelectedItemPosition()==0
-                && roomspinner.getSelectedItemPosition()!=0
+                && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                 && teacherspinner.getSelectedItemPosition()!=0) {
             dbref_teach.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -434,7 +434,6 @@ public class FetchData extends AppCompatActivity {
                 //given :sday,EMPTY rooms | result : all rooms empty on a day
                 else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()==0
-                        && roomspinner.getSelectedItemPosition()!=0
                         && teacherspinner.getSelectedItemPosition()==0
                         && roomspinner.getSelectedItem().equals("Empty rooms")) {
                     dbref_room.addValueEventListener(new ValueEventListener() {
@@ -451,7 +450,38 @@ public class FetchData extends AppCompatActivity {
                                     }
                                 }
                             }
-                            dayScheduleDialog dialog=new dayScheduleDialog(FetchData.this,rooms,times);
+                            dayScheduleDialog dialog=new dayScheduleDialog(FetchData.this,"times",rooms,times);
+                            dialog.create();
+                            dialog.show();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                //given :stime,EMPTY rooms | result : all rooms empty on a day
+                else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()!=0
+                        && classspinner.getSelectedItemPosition()==0
+                        && teacherspinner.getSelectedItemPosition()==0
+                        && roomspinner.getSelectedItem().equals("Empty rooms")) {
+                    dbref_room.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ArrayList<String> rooms=new ArrayList<String>(),days=new ArrayList<String>();
+                            for(DataSnapshot ds:dataSnapshot.getChildren()){
+                                vroom=ds.getKey();
+                                for(String day:getResources().getStringArray(R.array.days)){
+                                    if(!ds.hasChild(day+"("+stime+")")){
+                                        vday=day;
+                                        rooms.add(vroom);
+                                        days.add(vday);
+                                    }
+                                }
+                            }
+                            dayScheduleDialog dialog=new dayScheduleDialog(FetchData.this,"days",rooms,days);
                             dialog.create();
                             dialog.show();
                         }
@@ -466,7 +496,7 @@ public class FetchData extends AppCompatActivity {
                 //given : room,sday,stime | result : which teacher is teaching which class in the given room at given instance
         else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()!=0
                         && classspinner.getSelectedItemPosition()==0
-                        && roomspinner.getSelectedItemPosition()!=0
+                        && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
                     dbref_Room.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -499,7 +529,7 @@ public class FetchData extends AppCompatActivity {
                 //TODO append "FREE" when not assigned anything to that room for the timeslot
         else if(dayspinner.getSelectedItemPosition()!=0 && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()==0
-                        && roomspinner.getSelectedItemPosition()!=0
+                        && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
                     dbref_Room.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -534,7 +564,7 @@ public class FetchData extends AppCompatActivity {
                 //given : room | result : rooms's TT
         else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()==0
                         && classspinner.getSelectedItemPosition()==0
-                        && roomspinner.getSelectedItemPosition()!=0
+                        && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
                     dbref_room.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -582,7 +612,7 @@ public class FetchData extends AppCompatActivity {
                 //given : sday,stime,sclass,sroom,steacher
         else if(dayspinner.getSelectedItemPosition()==0 && timespinner.getSelectedItemPosition()!=0
                         && classspinner.getSelectedItemPosition()==0
-                        && roomspinner.getSelectedItemPosition()!=0
+                        && (roomspinner.getSelectedItemPosition()!=0 || !roomspinner.getSelectedItem().equals("Empty rooms"))
                         && teacherspinner.getSelectedItemPosition()==0) {
                     dbref_room.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -821,7 +851,7 @@ public class FetchData extends AppCompatActivity {
 //                    }
 //                }
 
-                else showmsg("Query not considered yet","Contact the TiTa admin in order to get this query solved");
+                else showmsg("Query not considered yet","Contact the TiTa admin in order to get this query solved !");
 
                 exist=false;
                 title="";

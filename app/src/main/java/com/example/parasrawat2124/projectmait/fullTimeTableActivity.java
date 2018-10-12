@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +31,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
             {R.id.m7,R.id.t7,R.id.w7,R.id.th7,R.id.f7},
             {R.id.m8,R.id.t8,R.id.w8,R.id.th8,R.id.f8}};
     ArrayList<String> days,times;
+    GridLayout gridl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_time_table);
 
         thead=findViewById(R.id.head);
+        gridl=(GridLayout)findViewById(R.id.gridl);
 
         b=getIntent().getExtras();
         String head=b.getString("head");
@@ -74,7 +78,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
 
     public void displayTeacherTT(String head,ArrayList<String> days,ArrayList<String> times,ArrayList<String> classes,ArrayList<String> rooms){
         thead.setText(head);
-        int[] a=checkDay(days),b=checkTime(times);
+        int[] a=checkDay(days),b=checkStartTime(times);
         for(int i=0;i<l;i++){
             TextView m=findViewById(ids[b[i]][a[i]]);
             m.setText(classes.get(i)+"\n"+rooms.get(i));
@@ -84,7 +88,7 @@ public class fullTimeTableActivity extends AppCompatActivity {
 
     public void displayRoomTT(String head,ArrayList<String> days,ArrayList<String> times,ArrayList<String> teachers,ArrayList<String> classes){
         thead.setText(head);
-        int[] a=checkDay(days),b=checkTime(times);
+        int[] a=checkDay(days),b=checkStartTime(times);
         for(int i=0;i<l;i++){
             TextView m=findViewById(ids[b[i]][a[i]]);
             m.setText(classes.get(i)+"\n"+teachers.get(i));
@@ -94,15 +98,39 @@ public class fullTimeTableActivity extends AppCompatActivity {
 
     public void displayClassTT(String head,ArrayList<String> days,ArrayList<String> times,ArrayList<String> subjects,ArrayList<String> teachers,ArrayList<String> rooms,ArrayList<String> types){
         thead.setText(head);
-        int[] a=checkDay(days),b=checkTime(times);
+        int[] a=checkDay(days),bs=checkStartTime(times),be=checkEndTime(times);
         for(int i=0;i<l;i++){
-            TextView m=findViewById(ids[b[i]][a[i]]);
+
+            TextView m=findViewById(ids[bs[i]][a[i]]);
+            Log.e("=========="+":"+i,bs[i]+"|"+be[i]);
             String sub=subjects.get(i);
             String teacher=teachers.get(i);
             int c=teacher.indexOf(" ");
             String initials=Character.toString(teacher.charAt(0))+Character.toString(teacher.charAt(c+1));
-            m.setText(sub+"\n("+types.get(i)+")"+"\n"+initials+"\n"+rooms.get(i));
+            m.append(sub+"\n("+types.get(i)+")"+"\n"+initials+"\n"+rooms.get(i)+"\n");
             m.setTextSize(10);
+
+            if(be[i]-bs[i]!=0){
+                //TODO answer it on stack overflow
+                GridLayout.Spec rowspan=GridLayout.spec(GridLayout.UNDEFINED,be[i]-bs[i]+1,1);
+                GridLayout.Spec colspan=GridLayout.spec(GridLayout.UNDEFINED,GridLayout.FILL);
+                GridLayout.LayoutParams gridparam=new GridLayout.LayoutParams(rowspan,colspan);
+                gridparam.height=0;
+                gridparam.width=0;
+                gridparam.setMargins(1,1,1,1);
+                m.setLayoutParams(gridparam);
+                //m.append("\n"+"----"+"\n");
+
+                int slots=be[i]-bs[i];
+                Log.e("slots",Integer.toString(slots));
+                for(int j=1;j<=slots;j++){
+                    TextView n=findViewById(ids[bs[i]+j][a[i]]);
+                    Log.e("j",Integer.toString(j));
+                    Log.e("bs[i+j],a[i]",Integer.toString(bs[i]+j)+"|"+Integer.toString(a[i]));
+                    gridl.removeView(n);
+                }
+                Log.e("spansize",Integer.toString(be[i]-bs[i]+1));
+            }
         }
     }
 
@@ -119,18 +147,40 @@ public class fullTimeTableActivity extends AppCompatActivity {
         }
         return a;
     }
-    public int[] checkTime(ArrayList<String> times){
+    public int[] checkStartTime(ArrayList<String> times){
         int[] b=new int[l];
         for(int i=0;i<l;i++){
-            switch (times.get(i)){
-                case "9:15-10:05" : b[i]=0;break;
-                case "10:05-10:55" : b[i]=1;break;
-                case "10:55-11:45" : b[i]=2;break;
-                case "11:45-12:35" : b[i]=3;break;
-                case "1:15-2:05" : b[i]=4;break;
-                case "2:05-2:55" : b[i]=5;break;
-                case "2:55-3:45" : b[i]=6;break;
-                case "3:45-4:35" : b[i]=7;
+            int dash=times.get(i).indexOf("-");
+            String starttime=times.get(i).substring(0,dash);
+            Log.e("starttime"+":"+i,times.get(i)+"|"+starttime);
+            switch (starttime){
+                case "9:15" : b[i]=0;break;
+                case "10:05" : b[i]=1;break;
+                case "10:55" : b[i]=2;break;
+                case "11:45" : b[i]=3;break;
+                case "1:15" : b[i]=4;break;
+                case "2:05" : b[i]=5;break;
+                case "2:55" : b[i]=6;break;
+                case "3:45" : b[i]=7;
+            }
+        }
+        return b;
+    }
+    public int[] checkEndTime(ArrayList<String> times){
+        int[] b=new int[l];
+        for(int i=0;i<l;i++){
+            int dash=times.get(i).indexOf("-");
+            String endtime=times.get(i).substring(dash+1);
+            Log.e("endtime"+":"+i,times.get(i)+"|"+endtime);
+            switch (endtime){
+                case "10:05" : b[i]=0;break;
+                case "10:55" : b[i]=1;break;
+                case "11:45" : b[i]=2;break;
+                case "12:35" : b[i]=3;break;
+                case "2:05" : b[i]=4;break;
+                case "2:55" : b[i]=5;break;
+                case "3:45" : b[i]=6;break;
+                case "4:35" : b[i]=7;
             }
         }
         return b;

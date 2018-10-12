@@ -83,6 +83,11 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:entries="@array/roomtype"></Spinner>
+        <Spinner
+            android:id="@+id/endtimespinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/time_slots"></Spinner>
         <TextView
             android:id="@+id/tclass"
             android:layout_width="match_parent"

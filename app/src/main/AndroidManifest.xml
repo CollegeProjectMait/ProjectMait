@@ -14,18 +14,16 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterUserActivity" />
         <activity android:name=".pushDataActivity">
-
-        </activity>
-        <activity android:name=".FetchData"></activity>
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".fullTimeTableActivity" />
-        <activity android:name=".emptyDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FetchData"></activity>
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".fullTimeTableActivity" />
+        <activity android:name=".AddActivity"></activity>
     </application>
 
 </manifest>

@@ -22,14 +22,14 @@ import java.util.List;
 
 public class pushDataActivity extends AppCompatActivity {
 
-   Spinner classspinner,roomspinner,teacherspinner,daysspinner,timeslotspinner,typespinner,subspinner;
+   Spinner classspinner,roomspinner,teacherspinner,daysspinner,timeslotspinner,typespinner,subspinner,endtimespinner;
    DatabaseReference databaseReference,dbref_teach,dbref_room, dbref_rinfo, dbref_sinfo,dbref_teachinfo;
    int count=0;
     Button fetch;
     ArrayAdapter<String> typeadap;
     ArrayList<String> rooms,subjects,teachers,teachsubjects=new ArrayList<String>();
     String node=null;
-    String sday,stime,sclass,sroom,steacher,sroomtype,ssubject;
+    String sday,stime,sclass,sroom,steacher,sroomtype,ssubject,sendtime;
     ArrayList<String> addsubjects=new ArrayList<String>();
 
 
@@ -47,6 +47,7 @@ public class pushDataActivity extends AppCompatActivity {
         timeslotspinner=findViewById(R.id.timeslotsspinner);
         typespinner=findViewById(R.id.roomtypespinner);
         subspinner=findViewById(R.id.subjectspinner);
+        endtimespinner=findViewById(R.id.endtimespinner);
 
         fetch=findViewById(R.id.next);
 
@@ -165,13 +166,22 @@ public class pushDataActivity extends AppCompatActivity {
         sroom=roomspinner.getSelectedItem().toString();
         sroomtype=typespinner.getSelectedItem().toString();
         ssubject=subspinner.getSelectedItem().toString();
+        sendtime=endtimespinner.getSelectedItem().toString();
 
-       ParasRawatPushData data=new ParasRawatPushData(sclass,sday,stime,steacher,sroom,sroomtype,ssubject);
+        StringBuffer timestart=new StringBuffer(stime),timeend=new StringBuffer(sendtime);
+        int dash=timestart.indexOf("-");
+        timestart=new StringBuffer(timestart.substring(0,dash));
+        dash=timeend.indexOf("-");
+        timeend=new StringBuffer(timeend.substring(dash+1));
+        String timeslot=timestart.append("-").append(timeend).toString();
+
+       ParasRawatPushData data=new ParasRawatPushData(sclass,sday,timeslot,steacher,sroom,sroomtype,ssubject);
 
        //TODO put a check so that one teacher cnt be assigned(added) to more than one class for same sday&stime like for wednesday(9:15-10:05).
-        databaseReference.child(sclass).child(sday+"("+stime+")").setValue(data);
+        //TODO check for override
+        databaseReference.child(sclass).child(sday+"("+timeslot+")").setValue(data);
 
-        dbref_teach.child(steacher).child(sday+"("+stime+")").setValue(data);
+        dbref_teach.child(steacher).child(sday+"("+timeslot+")").setValue(data);
 
         dbref_room.child(sroom).child(sday+"("+stime+")").setValue(data);
 
@@ -195,6 +205,8 @@ public class pushDataActivity extends AppCompatActivity {
     }
 
     public void addAnother(View view){
-        addsubjects=new ArrayList<String>();
+        //addsubjects=new ArrayList<String>();
+        Intent i=new Intent(pushDataActivity.this,AddActivity.class);
+        startActivity(i);
     }
 }
